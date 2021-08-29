@@ -1,0 +1,25 @@
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+curly_bracket_next_line = false
+spaces_around_operators = true 
+indent_brace_style = 1tbs
+spaces_around_brackets = outside
+max_line_length = 120
+indent_brace_style = K&R
+wildcard_import_limit = 2
+
+[*.js]
+quote_type = single  
+
+[*.{html,less,css,json}]
+quote_type = double
+
+[package.json]    
+indent_size = 2 
