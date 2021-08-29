@@ -3,7 +3,7 @@
     <!-- tests list -->
     <b-container class="home-test-wrap">
       <b-card-group deck>
-        <b-card v-for="(test, i) in tests" :key="i" :img-src="test.image | formatImage" img-top class="shadow-sm">
+        <b-card v-for="(test, i) in tests" :key="i" :img-src="test.image" img-top class="shadow-sm">
           
             <b-card-title>{{test.name}}</b-card-title>
             <b-card-text>
@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import { categories, home } from "@/api/home";
+import { category } from "@/api/home";
 // @ is an alias to /src
 
 export default {
-  name: "home",
+  name: "category",
   components: {},
   data() {
     return {
@@ -44,23 +44,20 @@ export default {
     },
   },
   created() {
-    this.getCategories();
-    this.getHome();
+    // this.id = this.$route.params.id;
+    console.log(this.$route)
+    this.getTests();
   },
   mounted() {},
   methods: {
-    getHome() {
-      home().then((resonse) => {
+    getTests() {
+      let params = {
+        id: this.id
+      }
+      category(params).then((resonse) => {
         console.log(resonse);
         let { data } = resonse;
         this.tests = data;
-      });
-    },
-    getCategories() {
-      categories().then((resonse) => {
-        console.log(resonse);
-        let { data } = resonse;
-        this.categories = data;
       });
     },
   },

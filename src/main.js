@@ -4,13 +4,22 @@ import router from './router'
 import store from './store'
 import '@/permission'
 
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-import locale from 'element-ui/lib/locale/lang/en'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-Vue.use(ElementUI, { locale })
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-// import '@/assets/css/main.scss'
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+
+import Notifications from 'vue-notification'
+Vue.use(Notifications)
+
+
+import '@/assets/css/metric.scss'
 
 Vue.config.productionTip = false
 

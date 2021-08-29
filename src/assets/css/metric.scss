@@ -1,0 +1,17 @@
+body {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  background: #ebf1ec;
+}
+.bg-metric {
+  background-color: #354455;
+}
+.home-test-wrap {
+  max-width: 960px;
+}
+.home-test-wrap .card img {
+  width: 100%;
+  height: 180px;
+  background: #efefef;
+  object-fit: cover;
+}

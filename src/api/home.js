@@ -15,3 +15,11 @@ export function categories(params) {
     params
   });
 }
+
+export function category(params) {
+  return request({
+    url: '/api/category',
+    method: 'get',
+    params
+  });
+}
