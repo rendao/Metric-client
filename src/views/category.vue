@@ -18,7 +18,7 @@
                         <div class="d-flex align-items-center">
                             <small class="text-muted flex-grow-1">
                                 <b-icon icon="card-checklist"></b-icon> {{test.total}}
-                                <b-icon icon="clock"></b-icon> {{test.duration}}s
+                                <b-icon icon="clock"></b-icon> {{test.duration|formatToMin}} min
                             </small>
                             <b-button :href="'/test/'+test.code" size="sm" pill variant="outline-secondary" class="px-4">Start</b-button>
                         </div>
@@ -46,6 +46,9 @@ export default {
     filters: {
         formatImage (uri) {
             return Window.MeConfig.API_URL + uri;
+        },
+        formatToMin(s) {
+            return (s/60).toFixed(0);
         },
     },
     created () {
