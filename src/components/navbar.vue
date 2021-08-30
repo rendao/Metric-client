@@ -36,7 +36,6 @@ export default {
     },
     data () {
         return {
-            name: 'My',
             categories: [],
         };
     },
@@ -45,7 +44,11 @@ export default {
         this.getCategories();
     },
     mounted () {
-        this.name = this.$store.getters.name;
+    },
+    computed: {
+        name () {
+            return store.getters.name;
+        }
     },
     methods: {
         getCategories () {

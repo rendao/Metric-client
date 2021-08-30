@@ -7,9 +7,9 @@
                 <div class="text-muted">{{category.description}}</div>
             </div>
             <b-card-group deck>
-                <b-card v-for="(test, i) in tests.data" :key="i" :img-src="test.image | formatImage" img-top class="shadow-sm">
-
-                    <b-card-title>{{test.name}}</b-card-title>
+                <b-card v-for="(test, i) in tests.data" :key="i" img-top class="shadow-sm">
+                    <b-card-img :src="test.image | formatImage" :onerror="onErrorImage"></b-card-img>
+                    <b-card-title class="mt-2">{{test.name}}</b-card-title>
                     <b-card-text>
                         {{ test.short_description }}
                     </b-card-text>
@@ -40,6 +40,7 @@ export default {
         return {
             category: {},
             tests: [],
+            onErrorImage: "this.src='/images/placeholder.jpg'"
         };
     },
     filters: {
@@ -49,7 +50,6 @@ export default {
     },
     created () {
         this.id = this.$route.params.id;
-        console.log(this.$route)
         this.getCategory();
     },
     mounted () { },
