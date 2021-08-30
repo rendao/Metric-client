@@ -1,6 +1,6 @@
 import router from './router';
 import store from './store';
-import { Message } from 'element-ui';
+import Vue from 'vue'
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { getToken } from '@/utils/auth';
@@ -8,7 +8,7 @@ import getPageTitle from '@/utils/get-page-title';
 
 NProgress.configure({ showSpinner: false });
 
-const whiteList = ['/', 'home', '/category', '/login'];
+const whiteList = ['/', '/home', 'category', '/login'];
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
@@ -30,7 +30,10 @@ router.beforeEach(async (to, from, next) => {
           next();
         } catch (error) {
           await store.dispatch('user/resetToken');
-          Message.error(error || 'Has Error');
+          Vue.notify({
+            text: error,
+            type: 'error'
+          })
           next(`/login?redirect=${to.path}`);
           NProgress.done();
         }

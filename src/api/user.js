@@ -16,11 +16,11 @@ export function login(data) {
   });
 }
 
-export function getInfo(token) {
+export function getInfo(params) {
   return request({
-    url: '/api/auth/profile',
+    url: '/api/user/profile',
     method: 'get',
-    params: { token }
+    params,
   });
 }
 
