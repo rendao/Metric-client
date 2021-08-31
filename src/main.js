@@ -18,7 +18,6 @@ Vue.use(IconsPlugin)
 import Notifications from 'vue-notification'
 Vue.use(Notifications)
 
-
 import '@/assets/css/metric.scss'
 
 Vue.config.productionTip = false

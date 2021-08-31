@@ -8,7 +8,7 @@ import getPageTitle from '@/utils/get-page-title';
 
 NProgress.configure({ showSpinner: false });
 
-const whiteList = ['/', 'home', 'category', '/login'];
+const whiteList = ['/', '/home', 'category', '/login'];
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start();

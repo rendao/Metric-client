@@ -37,7 +37,7 @@ const actions = {
           const { data } = response;
           commit('SET_TOKEN', data.token);
           setToken(data.token);
-          console.log(111, getToken())
+          console.log(101, data.token);
           resolve(data);
         })
         .catch(error => {
@@ -48,20 +48,18 @@ const actions = {
 
   // get user info
   getInfo({ commit, state }) {
+      console.log(102, getToken(), state)
     return new Promise((resolve, reject) => {
         getInfo()
         .then(response => {
-          const { data } = response;
-
-          if (!data) {
+       
+          if (!response) {
             return reject('Verification failed, please Login again.');
           }
-
-          const { name, avatar } = data;
-
+          const { name, avatar } = response;
           commit('SET_NAME', name);
           commit('SET_AVATAR', avatar);
-          resolve(data);
+          resolve(response);
         })
         .catch(error => {
           reject(error);

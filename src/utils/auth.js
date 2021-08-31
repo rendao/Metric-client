@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'METRIC'
+const TokenKey = 'metric'
 
 export function getToken() {
   return Cookies.get(TokenKey)
