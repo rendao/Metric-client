@@ -1,8 +1,9 @@
 <template>
     <div class="page-question-wrap">
-        <b-container class="my-4">
-
-            <b-card class="p-4 shadow-sm">
+        <b-container>
+            <div class="row mb-16">
+            <div class="col-md-8 mt-4">
+            <b-card class="p-4 shadow-sm block">
                 <b-form @submit="onSubmit" @reset="onReset">
                     <b-form-group :label="question.question">
                         <b-form-radio-group v-model="option" plain stacked :aria-describedby="ariaDescribedby">
@@ -14,6 +15,11 @@
                     <div class="mt-3">Selected: <strong>{{ option }}</strong></div>
                 </b-form>
             </b-card>
+            </div>
+            <div class="col-md-4 mt-4">
+                <b-button type="submit" variant="secondary" block>Next</b-button>
+            </div>
+            </div>
         </b-container>
     </div>
 </template>
