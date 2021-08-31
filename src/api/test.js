@@ -15,3 +15,11 @@ export function start(code) {
     params: {}
   });
 }
+
+export function answer(data) {
+  return request({
+    url: "/api/test/" + data.code + "/answer",
+    method: "post",
+    data
+  });
+}

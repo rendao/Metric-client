@@ -2,6 +2,7 @@
     <div class="page-home-wrap mt-4">
         <!-- tests list -->
         <b-container class="test-wrap">
+            <b-overlay :show="loading" spinner-variant="warning" spinner-type="grow" spinner-small rounded="sm">
             <div class="page-header mb-4">
                 <h3>{{test.name}} </h3>
             </div>
@@ -17,6 +18,7 @@
                 <b-button :href="'/test/'+test.code+'/question'" size="md" pill variant="success"
                                 class="px-4">Start</b-button>
             </div>
+            </b-overlay>
         </b-container>
     </div>
 </template>
@@ -26,6 +28,7 @@
     export default {
         data() {
             return {
+                loading: false,
                 test: {}
             }
         },
@@ -35,9 +38,12 @@
         },
         methods: {
             getTest() {
+                this.loading = true;
                 test(this.code).then(response =>  {
                     this.test = response.data;
-                })
+                }).finally(() => {
+                    this.loading = false;
+                });
             }
         },
     }

@@ -2,6 +2,7 @@
     <div class="page-home-wrap mt-4">
         <!-- tests list -->
         <b-container class="home-test-wrap">
+            <b-overlay :show="loading" spinner-variant="warning" spinner-type="grow" spinner-small rounded="sm">
             <b-card-group deck>
                 <b-card v-for="(test, i) in tests" :key="i" img-top class="shadow-sm">
                     <b-card-img :src="test.image | formatImage" :onerror="onErrorImage"></b-card-img>
@@ -21,6 +22,7 @@
                     </template>
                 </b-card>
             </b-card-group>
+            </b-overlay>
         </b-container>
     </div>
 </template>
@@ -34,6 +36,7 @@ export default {
     components: {},
     data () {
         return {
+            loading: false,
             categories: [],
             tests: [],
             onErrorImage: "this.src='/images/placeholder.jpg'"
@@ -54,9 +57,12 @@ export default {
     mounted () { },
     methods: {
         getHome () {
+            this.loading = true;
             home().then((resonse) => {
                 let { data } = resonse;
                 this.tests = data;
+            }).finally(() => {
+                this.loading = false;
             });
         },
         getCategories () {

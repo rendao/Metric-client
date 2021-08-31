@@ -2,6 +2,7 @@
     <div class="page-home-wrap mt-4">
         <!-- tests list -->
         <b-container class="home-test-wrap">
+            <b-overlay :show="loading" spinner-variant="warning" spinner-type="grow" spinner-small rounded="sm">
             <div class="page-header mb-4">
                 <h3>{{category.name}} </h3>
                 <div class="text-muted">{{category.description}}</div>
@@ -25,6 +26,7 @@
                     </template>
                 </b-card>
             </b-card-group>
+            </b-overlay>
         </b-container>
     </div>
 </template>
@@ -38,6 +40,7 @@ export default {
     components: {},
     data () {
         return {
+            loading: false,
             category: {},
             tests: [],
             onErrorImage: "this.src='/images/placeholder.jpg'"
@@ -59,11 +62,14 @@ export default {
     methods: {
         getCategory () {
             let id =  this.id;
+            this.loading = true;
             category(id).then((response) => {
                 console.log(response);
                 let { category, tests } = response;
                 this.tests = tests;
                 this.category = category;
+            }).finally(() => {
+                this.loading = false;
             });
         },
     },
