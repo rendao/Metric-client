@@ -2,30 +2,30 @@
     <div class="page-question-wrap">
         <b-container>
             <b-overlay :show="loading" spinner-variant="warning" spinner-type="grow" spinner-small rounded="sm">
-            <b-form @submit="onSubmit" @reset="onReset">
-                <b-progress class="mt-4" :max="test.total" height="0.45rem" variant="info" animated>
-                    <b-progress-bar :value="(questionIndex+1)"></b-progress-bar>
-                </b-progress>
-                <div class="row mb-16">
-                    <div class="col-md-8 mt-4">
-                        <b-card class="p-4 shadow-sm block">
-                            <b-form-group :label="question.question">
-                                <b-form-radio-group v-model="option" plain stacked>
-                                    <b-form-radio v-for="(opt, k) in question.options" :value="opt" :key="k">
-                                        {{opt.label}}
-                                    </b-form-radio>
-                                </b-form-radio-group>
-                            </b-form-group>
-                            <!-- <div class="mt-3">Selected: <strong>{{ option }}</strong></div>   -->
-                        </b-card>
+                <b-form @submit="onSubmit" @reset="onReset">
+                    <b-progress class="mt-4" :max="test.total" height="0.45rem" variant="info" animated>
+                        <b-progress-bar :value="(questionIndex+1)"></b-progress-bar>
+                    </b-progress>
+                    <div class="row mb-16">
+                        <div class="col-md-8 mt-4">
+                            <b-card class="p-4 shadow-sm block">
+                                <b-form-group :label="question.question">
+                                    <b-form-radio-group v-model="option" plain stacked>
+                                        <b-form-radio v-for="(opt, k) in question.options" :value="opt" :key="k">
+                                            {{opt.label}}
+                                        </b-form-radio>
+                                    </b-form-radio-group>
+                                </b-form-group>
+                                <!-- <div class="mt-3">Selected: <strong>{{ option }}</strong></div>   -->
+                            </b-card>
+                        </div>
+                        <div class="col-md-4 mt-4">
+                            <b-button type="submit" variant="secondary" block :disabled="!option || disabled">
+                                <b-spinner small v-if="disabled"></b-spinner> Next
+                            </b-button>
+                        </div>
                     </div>
-                    <div class="col-md-4 mt-4">
-                        <b-button type="submit" variant="secondary" block :disabled="!option || disabled">
-                            <b-spinner small v-if="disabled"></b-spinner> Next
-                        </b-button>
-                    </div>
-                </div>
-             </b-form>
+                </b-form>
             </b-overlay>
         </b-container>
     </div>
@@ -82,10 +82,10 @@ export default {
                 this.loading = false;
             })
         },
-        postAnswer() {
-            let { questionIndex, startTime, option, session_code, test, question} = this;
+        postAnswer () {
+            let { questionIndex, startTime, option, session_code, test, question } = this;
             let endTime = new Date().valueOf();
-            let duration = parseInt((endTime - startTime)/1000);
+            let duration = parseInt((endTime - startTime) / 1000);
             let params = {
                 code: test.code,
                 session_code,
@@ -100,9 +100,15 @@ export default {
             answer(params).then(response => {
                 console.log('answer', response);
                 this.option = null;
-                if (questionIndex <= test.total - 1) {
-                    this.questionIndex += 1;
-                }  
+                let { test_session } = response;
+                console.log('test_session', test_session)
+                if (test_session.status == 'completed') {
+                    this.$router.push({path: '/test/result/' + test_session.code});
+                } else {
+                    if (questionIndex <= test.total - 1) {
+                        this.questionIndex += 1;
+                    }
+                }
             }).finally(() => {
                 this.disabled = false;
             });

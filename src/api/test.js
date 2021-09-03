@@ -23,3 +23,12 @@ export function answer(data) {
     data
   });
 }
+
+export function result(code) {
+    return request({
+      url: "/api/test/result/" + code,
+      method: "get",
+      params: {}
+    });
+  }
+  

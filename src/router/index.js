@@ -30,6 +30,11 @@ const routes = [
     component: () => import('@/views/question.vue'),
   },
   {
+    path: '/test/result/:test_session_code?',
+    name: 'Result',
+    component: () => import('@/views/result.vue'),
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
