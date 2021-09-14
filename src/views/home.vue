@@ -39,7 +39,7 @@ export default {
             loading: false,
             categories: [],
             tests: [],
-            onErrorImage: "this.src='/images/placeholder.jpg'"
+            onErrorImage: "this.src='./images/placeholder.jpg'"
         };
     },
     filters: {

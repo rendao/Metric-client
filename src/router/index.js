@@ -47,7 +47,7 @@ const routes = [
 
 const createRouter = () => 
   new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     scrollBehavior: () => ({ y: 0 }),
     // base: process.env.BASE_URL,
     routes

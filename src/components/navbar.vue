@@ -1,7 +1,7 @@
 <template>
     <div class="navbar-wrap">
         <b-navbar toggleable="sm" type="dark" variant="metric">
-            <b-navbar-brand href="#">Metric</b-navbar-brand>
+            <b-navbar-brand to="/">Metric</b-navbar-brand>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
