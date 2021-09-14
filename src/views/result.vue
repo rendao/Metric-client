@@ -38,7 +38,7 @@
             </b-card-group>
 
             <b-card class="mt-2">
-                 <b-button :href="testLink" size="sm" pill block variant="outline-info"><b-icon icon="bootstrap-reboot"></b-icon> Test again</b-button>
+                 <b-button :to="testLink" size="sm" pill block variant="outline-info"><b-icon icon="bootstrap-reboot"></b-icon> Test again</b-button>
             </b-card>
     
     </div>
