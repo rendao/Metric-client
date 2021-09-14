@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <b-button :href="'/test/'+test.code+'/question'" size="md" pill variant="success"
+                <b-button :to="'/test/'+test.code+'/question'" size="md" pill variant="success"
                                 class="px-4">Start</b-button>
             </div>
             </b-overlay>

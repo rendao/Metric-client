@@ -5,8 +5,8 @@
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
-                    <b-nav-item href="/">Home</b-nav-item>
-                    <b-nav-item v-for="(cat, i) in categories" :key="i" :href="'/category/' + cat.id">{{ cat.name }}
+                    <b-nav-item to="/">Home</b-nav-item>
+                    <b-nav-item v-for="(cat, i) in categories" :key="i" :to="'/category/' + cat.id">{{ cat.name }}
                     </b-nav-item>
                 </b-navbar-nav>
 
@@ -17,7 +17,7 @@
                         <template #button-content>
                             <em>{{name || 'My'}}</em>
                         </template>
-                        <b-dropdown-item v-if="!name" href="/login">Sign In</b-dropdown-item>
+                        <b-dropdown-item v-if="!name" to="/login">Sign In</b-dropdown-item>
                         <b-dropdown-item v-else @click="logout">Sign Out</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
